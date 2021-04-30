@@ -6,8 +6,6 @@ public class Main {
 		String internetSubeButonu="Ýnternet Þubesi";
 		double dolarDun=8.18;
 		double dolarBugun=8.18;
-		int vade=36;
-		boolean dustuMu=false;
 		System.out.println(internetSubeButonu);
 		if(dolarBugun<dolarDun)
 		{
