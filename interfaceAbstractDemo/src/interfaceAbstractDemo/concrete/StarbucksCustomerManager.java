@@ -18,9 +18,6 @@ public class StarbucksCustomerManager extends BaseCustomerManager{
 		}
 		else {
 			System.out.println("Not a Valid Person");
-		}
-		
-	}
-
-	
+		}		
+	}	
 }

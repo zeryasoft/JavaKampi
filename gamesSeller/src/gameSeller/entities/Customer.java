@@ -1,25 +1,22 @@
-package interfaceAbstractDemo.entities;
+package gameSeller.entities;
 
-import interfaceAbstractDemo.abstractt.Entity;
+import gameSeller.Abstract.Entity;
 
-public class Customer implements Entity{
-	
+public class Customer  implements Entity{
 	private int id;
 	private String firstName;
 	private String lastName;
-	private int date; 
 	private String nationalityId;
+	private int birthOfDateYear;
 	
 	public Customer() {
 		
 	}
-	
-	public Customer(int id, String firstName, String lastName, int date, String nationalityId) {
-		super();
+
+	public Customer(int id, String firstName, String lastName, String nationalityId) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.date = date;
 		this.nationalityId = nationalityId;
 	}
 
@@ -47,19 +44,19 @@ public class Customer implements Entity{
 		this.lastName = lastName;
 	}
 
-	public int getDate() {
-		return date;
-	}
-
-	public void setDate(int date) {
-		this.date = date;
-	}
-
 	public String getNationalityId() {
 		return nationalityId;
 	}
 
 	public void setNationalityId(String nationalityId) {
 		this.nationalityId = nationalityId;
+	}
+
+	public int getBirthOfDateYear() {
+		return birthOfDateYear;
+	}
+
+	public void setBirthOfDateYear(int birthOfDateYear) {
+		this.birthOfDateYear = birthOfDateYear;
 	}
 }

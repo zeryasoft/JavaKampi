@@ -16,8 +16,6 @@ public class Main {
 		customer.setLastName("KOÇ");
 		customer.setDate(1111);
 		customer.setNationalityId("11111111111");
-		baseCustomerManager.save(customer);
-			
-		
+		baseCustomerManager.save(customer);	
 	}
 }
