@@ -4,6 +4,7 @@ import gameSeller.Abstract.Entity;
 
 public class Campaign implements Entity{
 	int id;	
+	int gameId;
 	String campaignName;
 	double discountAmount;
 	
@@ -11,8 +12,9 @@ public class Campaign implements Entity{
 		
 	}
 
-	public Campaign(int id, String campaignName, double discountAmount) {
+	public Campaign(int id,int gameId, String campaignName, double discountAmount) {
 		this.id = id;
+		this.gameId=gameId;
 		this.campaignName = campaignName;
 		this.discountAmount = discountAmount;
 	}
@@ -39,5 +41,13 @@ public class Campaign implements Entity{
 
 	public void setDiscountAmount(double discountAmount) {
 		this.discountAmount = discountAmount;
+	}
+
+	public int getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(int gameId) {
+		this.gameId = gameId;
 	}
 }

@@ -5,9 +5,11 @@ import java.time.LocalDate;
 import gameSeller.adapters.MernisServiceAdapter;
 import gameSeller.concrete.CampaignManager;
 import gameSeller.concrete.CustomerManager;
+import gameSeller.concrete.GameManager;
 import gameSeller.concrete.SaleManager;
 import gameSeller.entities.Campaign;
 import gameSeller.entities.Customer;
+import gameSeller.entities.Game;
 import gameSeller.entities.Sale;
 
 public class Main {
@@ -30,12 +32,18 @@ public class Main {
 		sale.setSaleDate(LocalDate.now());
 		saleManager.sale(sale);
 		
+		Game game=new Game();
+		game.setId(1);
+		game.setName("UnderGround");
+		game.setUnitPrice(3000);
+		
 		CampaignManager campaignManager=new CampaignManager();
 		Campaign campaign=new Campaign();
 		campaign.setId(1);
-		campaign.setCampaignName("UnderGround");
+		campaign.setGameId(1);
+		campaign.setCampaignName("Damping");
 		campaign.setDiscountAmount(10);
-		campaignManager.add(campaign);
+		campaignManager.add(campaign,game);
 		
 	}
 }
