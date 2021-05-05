@@ -1,5 +1,7 @@
 package gameSeller.entities;
 
+import java.time.LocalDate;
+
 import gameSeller.Abstract.Entity;
 
 public class Customer  implements Entity{
@@ -8,7 +10,6 @@ public class Customer  implements Entity{
 	private String lastName;
 	private String nationalityId;
 	private int birthOfDateYear;
-	
 	public Customer() {
 		
 	}
