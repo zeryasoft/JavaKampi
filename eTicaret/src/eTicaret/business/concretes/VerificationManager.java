@@ -11,6 +11,7 @@ public class VerificationManager implements VerificationService {
     public VerificationManager(MailSender mailSender){
         this.mailSender = mailSender;
     }
+    
     @Override
     public boolean verificate(String mail) {
         String code = "";
@@ -26,6 +27,7 @@ public class VerificationManager implements VerificationService {
         if(!code.equals(enteredCode)){
             return false;
         }
+        System.out.println("Mailiniz Aktifleþti");
         return true;
     }
 }

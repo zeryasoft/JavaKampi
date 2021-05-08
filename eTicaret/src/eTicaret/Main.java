@@ -1,7 +1,9 @@
 package eTicaret;
 
 import eTicaret.business.concretes.UserManager;
+import eTicaret.business.concretes.VerificationManager;
 import eTicaret.core.servis.LoginWithGmailAdapter;
+import eTicaret.core.servis.MailSender;
 import eTicaret.core.servis.VerificationMailSender;
 import eTicaret.dataAccess.abstracts.UserDao;
 import eTicaret.dataAccess.concretes.HibernateUserDao;
@@ -27,8 +29,8 @@ public class Main {
 		
 		userManager.loginWithGoogle(user,"aaas@asss","as5ddf61");
 		
-		VerificationMailSender mailSender=new VerificationMailSender();
-		mailSender.send("aaas@asss");
+		VerificationManager verificationManager=new VerificationManager(new VerificationMailSender());
+		verificationManager.verificate("aaas@asss");
 		
 		userManager.delete(user, 1);
 		

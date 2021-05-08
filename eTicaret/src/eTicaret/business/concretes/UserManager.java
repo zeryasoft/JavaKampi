@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import eTicaret.business.abstracts.UserService;
 import eTicaret.core.ValidationTool;
 import eTicaret.core.servis.LoginWithGmailService;
+import eTicaret.core.servis.VerificationMailSender;
 import eTicaret.dataAccess.abstracts.UserDao;
 import eTicaret.entities.concretes.User;
 
@@ -80,6 +81,8 @@ public class UserManager implements UserService{
 		
 	}
 
+	VerificationMailSender mailSender=new VerificationMailSender();
+	
 	@Override
 	public boolean login(User user,String mail, String password) {
 	    boolean userToCheck = this.userDao.getByMail(user,mail);
@@ -92,22 +95,29 @@ public class UserManager implements UserService{
 	        return false;
 	    }
 	    System.out.println("Giriþ baþarýlý...");
+		mailSender.send("aaas@asss");
 	    return true;
 	}
 	
 	@Override
 	public boolean loginWithGoogle(User user,String mail, String password) {
-		boolean getMail=this.userDao.getByMail(user,mail);
-		if(getMail== false){
-		   System.out.println("Giriþ baþarýlý...");
-		   return true;
-		}
+
 	    if(!loginWithGmailService.login(user.getMail(),user.getPassword())){
 	        System.out.println("Google bilgilerinizi onaylamadý");
+	        return false;
 	    }
-        return false;
-	   
+	    
+		boolean getMail=this.userDao.getByMail(user,mail);
+		if(getMail== false){
+			this.userDao.add(user);
+		}
+
+		System.out.println("Giriþ baþarýlý...");
+		mailSender.send("aaas@asss");
+		return true;
 	}
+	
+
 	
 
 }
