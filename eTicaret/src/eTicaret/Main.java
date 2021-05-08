@@ -18,19 +18,28 @@ public class Main {
 		user.setLastName("KOÇ");
 		user.seteMail("aaas@asss");
 		user.setPassword("as5ddf61");
-			
+		
+		
 				
 		UserDao userDao=new HibernateUserDao(user);
 		UserManager userManager=new UserManager(userDao,new LoginWithGmailAdapter());
 		
+		userManager.register(user);
+		userManager.register(user);
 		userManager.register(user);
 		
 		userManager.login(user,"aaas@asss", "as5ddf61");
 		
 		userManager.loginWithGoogle(user,"aaas@asss","as5ddf61");
 		
+
+		for (User userName : userManager.getAll()) {
+			System.out.println(userName.getFirstName());
+		} 
+		
 		VerificationManager verificationManager=new VerificationManager(new VerificationMailSender());
 		verificationManager.verificate("aaas@asss");
+		
 		
 		userManager.delete(user, 1);
 		
