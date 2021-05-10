@@ -1,4 +1,4 @@
-package kodlamaio.northwind.dataAccess.abstracts;
+package kodlamaio.northwind.dataAccess.concretes;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
