@@ -1,13 +1,11 @@
-package interfaceAbstractDemo;
-
 import Adapters.MernisServiceAdapter;
-import interfaceAbstractDemo.abstractt.BaseCustomerManager;
-import interfaceAbstractDemo.concrete.StarbucksCustomerManager;
-import interfaceAbstractDemo.entities.Customer;
+import Entities.Customer;
+import abstracts.BaseCustomerManager;
+import concretes.StarbucksCustomerManager;
 
 public class Main {
 
-	public static void main(String[] args) {
+public static void main(String[] args) {
 		
 		BaseCustomerManager baseCustomerManager=new StarbucksCustomerManager(new MernisServiceAdapter());
 		Customer customer=new Customer();
@@ -18,4 +16,5 @@ public class Main {
 		customer.setNationalityId("11111111111");
 		baseCustomerManager.save(customer);	
 	}
+
 }

@@ -1,6 +1,6 @@
-package interfaceAbstractDemo.entities;
+package Entities;
 
-import interfaceAbstractDemo.abstractt.Entity;
+import abstracts.Entity;
 
 public class Customer implements Entity{
 	

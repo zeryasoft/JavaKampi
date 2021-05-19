@@ -1,7 +1,7 @@
-package interfaceAbstractDemo.concrete;
+package concretes;
 
-import interfaceAbstractDemo.abstractt.CustomerCheckService;
-import interfaceAbstractDemo.entities.Customer;
+import Entities.Customer;
+import abstracts.CustomerCheckService;
 
 public class CustomerCheckManager implements CustomerCheckService{
 

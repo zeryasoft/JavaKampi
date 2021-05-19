@@ -10,8 +10,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="job_positions")
-public class JobPosition {
+@Table(name="job_titles")
+public class JobTitle {
 	
 	@Id
 	@GeneratedValue
@@ -19,6 +19,6 @@ public class JobPosition {
 	private int id;
 	
 
-	@Column(name="position")
-	private String position;
+	@Column(name="title")
+	private String title;
 }

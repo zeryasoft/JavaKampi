@@ -1,8 +1,8 @@
-package interfaceAbstractDemo.concrete;
+package concretes;
 
-import interfaceAbstractDemo.abstractt.BaseCustomerManager;
-import interfaceAbstractDemo.abstractt.CustomerCheckService;
-import interfaceAbstractDemo.entities.Customer;
+import Entities.Customer;
+import abstracts.BaseCustomerManager;
+import abstracts.CustomerCheckService;
 
 public class StarbucksCustomerManager extends BaseCustomerManager{
 	
