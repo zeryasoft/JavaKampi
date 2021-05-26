@@ -3,7 +3,6 @@ package eTicaret;
 import eTicaret.business.concretes.UserManager;
 import eTicaret.business.concretes.VerificationManager;
 import eTicaret.core.servis.LoginWithGmailAdapter;
-import eTicaret.core.servis.MailSender;
 import eTicaret.core.servis.VerificationMailSender;
 import eTicaret.dataAccess.abstracts.UserDao;
 import eTicaret.dataAccess.concretes.HibernateUserDao;

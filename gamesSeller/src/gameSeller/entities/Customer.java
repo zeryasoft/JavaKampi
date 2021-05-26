@@ -1,7 +1,5 @@
 package gameSeller.entities;
 
-import java.time.LocalDate;
-
 import gameSeller.Abstract.Entity;
 
 public class Customer  implements Entity{

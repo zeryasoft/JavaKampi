@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import gameSeller.adapters.MernisServiceAdapter;
 import gameSeller.concrete.CampaignManager;
 import gameSeller.concrete.CustomerManager;
-import gameSeller.concrete.GameManager;
 import gameSeller.concrete.SaleManager;
 import gameSeller.entities.Campaign;
 import gameSeller.entities.Customer;

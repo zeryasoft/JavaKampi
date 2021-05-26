@@ -14,7 +14,6 @@ public static void main(String[] args) {
 		customer.setLastName("KOÇ");
 		customer.setDate(1111);
 		customer.setNationalityId("11111111111");
-		baseCustomerManager.save(customer);	
+		baseCustomerManager.save(customer);			
 	}
-
 }

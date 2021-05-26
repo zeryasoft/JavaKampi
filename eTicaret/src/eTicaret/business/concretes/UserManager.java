@@ -1,9 +1,6 @@
 package eTicaret.business.concretes;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import eTicaret.business.abstracts.UserService;
 import eTicaret.core.ValidationTool;
 import eTicaret.core.servis.LoginWithGmailService;

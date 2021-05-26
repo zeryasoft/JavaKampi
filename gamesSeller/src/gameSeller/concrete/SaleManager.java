@@ -1,6 +1,5 @@
 package gameSeller.concrete;
 
-import java.time.LocalDate;
 
 import gameSeller.Abstract.SaleService;
 import gameSeller.entities.Sale;
