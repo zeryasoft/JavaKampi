@@ -28,9 +28,9 @@ public class EmailVerifyManager implements EmailVerifyService{
 		EmailVerify ref = this.emailVerifyDao.findById(id).get();
 		if (ref.getCode().equals(verificationCode)) {
 			ref.setVerified(true);
-			return new SuccessDataResult<EmailVerify>(this.emailVerifyDao.save(ref), " -> Doğrulama Kodu Geçerli, İşlem Başarılı!");
+			return new SuccessDataResult<EmailVerify>(this.emailVerifyDao.save(ref), "Doğrulama Kodu Geçerli, İşlem Başarılı!");
 		}
-		return new ErrorDataResult<EmailVerify>(null, " -> Doğrulama Kodu Geçersiz, İşlem Başarısız Lütfen Tekrar Deneyin!");
+		return new ErrorDataResult<EmailVerify>(null, "Doğrulama Kodu Geçersiz, İşlem Başarısız Lütfen Tekrar Deneyin!");
 
 	}
 

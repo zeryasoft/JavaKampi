@@ -29,9 +29,9 @@ public class Candidate extends User{
 	
 	@NotNull
 	@Column(name="identity_number")
-	private String IdentityNumber;
+	private String identityNumber;
 	
 	@NotNull
 	@Column(name="birth_year")
-	private int BirthYear;
+	private int birthYear;
 }

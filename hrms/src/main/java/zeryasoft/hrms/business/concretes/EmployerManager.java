@@ -17,16 +17,16 @@ import zeryasoft.hrms.entities.concretes.EmailVerify;
 import zeryasoft.hrms.entities.concretes.Employer;
 
 @Service
-public class EmployerManager implements EmployerService{
+public class EmployerManager implements EmployerService {
 
 	private EmployerDao employerDao;
 	private EmailVerifyService emailVerifyService;
 
 	@Autowired
-	public EmployerManager(EmployerDao employerDao,EmailVerifyService emailVerifyService) {
+	public EmployerManager(EmployerDao employerDao, EmailVerifyService emailVerifyService) {
 		super();
-		this.employerDao=employerDao;
-		this.emailVerifyService=emailVerifyService;
+		this.employerDao = employerDao;
+		this.emailVerifyService = emailVerifyService;
 	}
 
 	@Override
@@ -37,27 +37,50 @@ public class EmployerManager implements EmployerService{
 	@Override
 	public DataResult<Employer> add(Employer employer) {
 		if (!companyNameValid(employer)) {
-			return new ErrorDataResult<Employer>(null, " -> Şirket Adı Alanı Boş Bırakılamaz!");
-		} else if (!webSiteValid(employer)) {
-			return new ErrorDataResult<Employer>(null, " -> WebSite Adresi Alanı Boş Bırakılamaz!");
-			
-			  } else if (!isRealEmployer(employer)) { return new
-			  ErrorDataResult<Employer>(null,
-			  " -> Geçersiz Email Adresi, Lütfen Tekrar Deneyin!");
-			 
-		} else if (!passwordNullValid(employer)) {
-			return new ErrorDataResult<Employer>(null, " -> Şifre Alanı Boş Bırakılamaz!");
+			return new ErrorDataResult<Employer>(null, "Şirket Adı Alanı Boş Bırakılamaz!");
+		}
+		if (!webSiteValid(employer)) {
+			return new ErrorDataResult<Employer>(null, "WebSite Adresi Alanı Boş Bırakılamaz!");
 
-		} else if (!isRealPhoneNumber(employer)) {
-			return new ErrorDataResult<Employer>(null, " -> Geçersiz Telefon Numarası Lütfen Tekrar Deneyin!");
+		}
+		if (!passwordNullValid(employer)) {
+			return new ErrorDataResult<Employer>(null, "Şifre Alanı Boş Bırakılamaz!");
 
-		} else if (!isEmailAlreadyRegistered(employer)) {
-			return new ErrorDataResult<Employer>(null, " -> Bu Email Adresi Sistemde Zaten Mevcut, Tekrar Deneyin!");
+		}
+		if (!isRealEmployer(employer)) {
+			return new ErrorDataResult<Employer>(employer, "Geçersiz Email Adresi, Lütfen Tekrar Deneyin!");
+
+		}
+		if (!isValidURL(employer.getWebAddress())) {
+			return new ErrorDataResult<Employer>(employer, "Geçersiz Web Adresi, Lütfen Tekrar Deneyin!");
+
 		}
 		
+		if(!isMailAndUrlAdresTheSame(employer)) {
+			return new ErrorDataResult<Employer>(employer, "Web Adresi ile Mail Adresi Aynı Olmalı, Lütfen Tekrar Deneyin!");
+		}
+		
+		if (!isRealPhoneNumber(employer)) {
+			return new ErrorDataResult<Employer>(employer, "Geçersiz Telefon Numarası Lütfen Tekrar Deneyin!");
+
+		}
+		if (!isEmailAlreadyRegistered(employer)) {
+			return new ErrorDataResult<Employer>(employer, "Bu Email Adresi Sistemde Zaten Mevcut, Tekrar Deneyin!");
+		}
+
 		this.emailVerifyService.generateCode(new EmailVerify(), employer.getId());
 		return new SuccessDataResult<Employer>(this.employerDao.save(employer),
-				" -> İş Veren Hesabı Eklendi! Doğrulama Kodu Gönderildi: " + employer.getId());
+				"İş Veren Hesabı Eklendi! Doğrulama Kodu Gönderildi: " + employer.getId());
+	}
+
+	private boolean isMailAndUrlAdresTheSame(Employer employer) {
+		String[] mailArray=employer.getEmail().split("@");
+		int index=mailArray.length;
+		String mail=mailArray[index-1];
+		if (!employer.getWebAddress().contains(mail)) {
+			return false;
+		}
+		return true;
 	}
 
 	private boolean companyNameValid(Employer employer) {
@@ -81,9 +104,7 @@ public class EmployerManager implements EmployerService{
 		Matcher matcher = pattern.matcher(employer.getEmail());
 		if (!matcher.matches()) {
 			return false;
-		} else if (!employer.getEmail().contains(employer.getWebAddress())) {
-			return false;
-		}
+		} 	
 		return true;
 	}
 
@@ -114,4 +135,20 @@ public class EmployerManager implements EmployerService{
 		return true;
 	}
 
+	public static boolean isValidURL(String url)
+    {
+        String regex = "((http|https|)://|)(www.|)?"
+              + "[a-zA-Z0-9@:%._\\+~#?&//=]"
+              + "{2,256}\\.[a-z]"
+              + "{2,6}\\b([-a-zA-Z0-9@:%"
+              + "._\\+~#?&//=]*)";
+ 
+        Pattern p = Pattern.compile(regex);
+        if (url == null) {
+            return false;
+        }
+        Matcher m = p.matcher(url);
+        return m.matches();
+    }
+ 
 }
