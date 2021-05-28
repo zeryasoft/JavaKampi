@@ -5,7 +5,7 @@ import java.util.Random;
 public class GenerateRandomCode {
 	public String Create(Integer id) {
 
-		String[] alphabet = { "A", "B", "C", "D", "E"
+		String[] alphabet = { "A", "B", "C", "D", "E","1","2","3","4","5"
 
 		};
 
