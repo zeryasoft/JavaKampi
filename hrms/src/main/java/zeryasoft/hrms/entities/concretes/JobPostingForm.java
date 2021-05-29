@@ -1,14 +1,19 @@
 package zeryasoft.hrms.entities.concretes;
 
 import java.sql.Date;
-import java.util.Currency;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,11 +30,13 @@ public class JobPostingForm {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="city_id")
-	private int cityId;
+	/*
+	 * @Column(name="city_id") private int cityId;
+	 */
 	
-	@Column(name="job_title_id")
-	private int jobTitleId;
+	/*
+	 * @Column(name="job_title_id") private int jobTitleId;
+	 */
 	
 	@Column(name="definition")
 	private String definition;
@@ -51,5 +58,20 @@ public class JobPostingForm {
 	
 	@Column(name="is_activeted")
 	private boolean isActivated;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "city_id", insertable = false, updatable = false)
+	@Fetch(FetchMode.JOIN)
+	private City cityId;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "job_title_id", insertable = false, updatable = false)
+	@Fetch(FetchMode.JOIN)
+	private JobTitle jobTitleId;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "employer_id", insertable = false, updatable = false)
+	@Fetch(FetchMode.JOIN)
+	private Employer employerId;
 	
 }

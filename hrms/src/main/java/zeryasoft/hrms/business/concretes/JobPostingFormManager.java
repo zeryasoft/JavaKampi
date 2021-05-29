@@ -1,5 +1,7 @@
 package zeryasoft.hrms.business.concretes;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,11 @@ public class JobPostingFormManager implements JobPostingFormService{
 	public DataResult<JobPostingForm> add(JobPostingForm jobPostingForm) {
 		return new SuccessDataResult<JobPostingForm>(this.jobPostingFormDao.save(jobPostingForm),"Kayıt İşlemi Başarılı");
 	}
+	@Override
+	public DataResult<List<JobPostingForm>> getByActivatedPosting(boolean isActivated) {		
+		return new SuccessDataResult<List<JobPostingForm>>
+		(this.jobPostingFormDao.getByIsActivated(isActivated),"Aktif İlanlar Listelendi");
+	}
+	
 
 }

@@ -1,5 +1,6 @@
 package zeryasoft.hrms.entities.concretes;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -21,4 +22,12 @@ public class Employer  extends User{
 	
 	@Column(name="phone_number")
 	private String PhoneNumber;
+	
+	
+	/*
+	 * @OneToMany(targetEntity = JobPostingForm.class, mappedBy =
+	 * "employer_id",orphanRemoval = false, fetch = FetchType.LAZY) private
+	 * Set<JobPostingForm> jobPostingForms;
+	 */
+	 
 }
