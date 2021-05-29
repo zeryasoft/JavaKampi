@@ -3,6 +3,7 @@ package zeryasoft.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import zeryasoft.hrms.business.abstracts.JobPostingFormService;
@@ -29,6 +30,17 @@ public class JobPostingFormManager implements JobPostingFormService{
 	public DataResult<List<JobPostingForm>> getByActivatedPosting(boolean isActivated) {		
 		return new SuccessDataResult<List<JobPostingForm>>
 		(this.jobPostingFormDao.getByIsActivated(isActivated),"Aktif İlanlar Listelendi");
+	}
+	@Override
+	public DataResult<List<JobPostingForm>> ActivatedPostingByDate() {
+		
+		Sort sort=Sort.by(Sort.Direction.DESC,"releaseDate");
+		return new SuccessDataResult<List<JobPostingForm>>(this.jobPostingFormDao.findAll(sort),"Aktif İlanlar Tarihe Listelendi");		
+	}
+	@Override
+	public DataResult<List<JobPostingForm>> getActivatedPostingByCompanyName(boolean isActivated, int employerId) {
+		return new SuccessDataResult<List<JobPostingForm>>
+		(this.jobPostingFormDao.getActivatedPostingByCompanyName(isActivated,employerId),"Şirket Adına göre Aktif İş İlanları Listelendi");
 	}
 	
 

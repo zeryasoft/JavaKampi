@@ -30,8 +30,22 @@ public class JobPostingFormController {
 	public DataResult<JobPostingForm> add(@RequestBody JobPostingForm jobPostingForm){
 		return this.jobPostingFormService.add(jobPostingForm);
 	}
+	
+	//Aktif iş ialnları
 	@GetMapping("/getByActivatedPosting")
 	public DataResult<List<JobPostingForm>> getByActivatedPosting(@RequestParam("isActivated") boolean isActivated){
 		return this.jobPostingFormService.getByActivatedPosting(isActivated);
+	}
+	
+	//ilan tarihine göre aktif iş ilanları
+	@GetMapping("/getActivatedPostingByDate")
+	public DataResult<List<JobPostingForm>> getActivatedPostingByDate(){
+		return this.jobPostingFormService.ActivatedPostingByDate();
+	}
+	
+	//firmaya ait aktif iş ilanları
+	@GetMapping("/getActivatedPostingByCompanyName")
+	public DataResult<List<JobPostingForm>> getActivatedPostingByCompanyName(@RequestParam("isActivated") boolean isActivated,@RequestParam("employerId") int employerId){
+		return this.jobPostingFormService.getActivatedPostingByCompanyName(isActivated,employerId);
 	}
 }
