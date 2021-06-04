@@ -4,9 +4,11 @@ import java.util.List;
 
 import kodlamaio.northwind.core.utilities.results.DataResult;
 import kodlamaio.northwind.core.utilities.results.Result;
+import kodlamaio.northwind.entities.Dtos.ProductWithCategoryDto;
 import kodlamaio.northwind.entities.concretes.Product;
 
 public interface ProductService {
+	
 	DataResult<List<Product>> getAll();
 	
 	DataResult<List<Product>> getAll(int pageNo, int pageSize);
@@ -29,5 +31,6 @@ public interface ProductService {
     DataResult<List<Product>> getByProductNameStartsWith(String productName);
 
     DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId);
-        							
+    
+    DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails(); 							
 }

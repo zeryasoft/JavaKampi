@@ -11,30 +11,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import zeryasoft.hrms.business.abstracts.CandidateService;
+import zeryasoft.hrms.business.abstracts.SchoolService;
 import zeryasoft.hrms.core.utilities.results.DataResult;
-import zeryasoft.hrms.entities.concretes.Candidate;
+import zeryasoft.hrms.core.utilities.results.Result;
+import zeryasoft.hrms.entities.dtos.SchoolDto;
 
 @RestController
-@RequestMapping("/api/candidates")
-public class CandidateController {
+@RequestMapping("api/school")
+public class SchoolController {
 	
-	private CandidateService candidateService;
+	private SchoolService schoolService;	
 
-	
 	@Autowired
-	public CandidateController(CandidateService candidateService) {
+	public SchoolController(SchoolService schoolService) {
 		super();
-		this.candidateService=candidateService;
+		this.schoolService = schoolService;
+		
 	}
 	
-	@GetMapping("/getAll")
-	public DataResult<List<Candidate>> getAll(){
-		return this.candidateService.getAll();
+	@GetMapping("/getall")
+	public DataResult<List<SchoolDto>> getAll(){
+		return this.schoolService.getAll();
 	}
-		
+	
+	
 	@PostMapping("/add")
-	public DataResult<Candidate> add(@Valid @RequestBody Candidate candidate) {		
-		return this.candidateService.add(candidate);
-	}
+	public Result add(@Valid @RequestBody SchoolDto schoolDto) {
+		return this.schoolService.add(schoolDto);
+	  }
 }

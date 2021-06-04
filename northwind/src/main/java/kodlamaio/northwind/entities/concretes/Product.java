@@ -15,18 +15,15 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="products")
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="products")
 public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	@Column(name="product_id")
 	private int id;
-	
-	  //@Column(name="category_id") 
-	 // private int categoryId;
-	 
+		 
 	@Column(name="product_name")
 	private String productName;
 	

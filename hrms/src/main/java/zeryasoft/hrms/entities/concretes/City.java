@@ -1,13 +1,18 @@
 package zeryasoft.hrms.entities.concretes;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Table(name="cities")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobPostings"})
 public class City {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +35,8 @@ public class City {
 	@Column(name="city_name")
 	private String cityName;
 	
-	/*
-	 * @OneToMany(targetEntity = JobPostingForm.class, mappedBy = "id",
-	 * orphanRemoval = false, fetch = FetchType.LAZY) private Set<JobPostingForm>
-	 * jobPostingForms;
-	 */
+	
+	  @OneToMany(targetEntity = JobPosting.class, mappedBy = "jobPostingId",orphanRemoval = false, fetch = FetchType.LAZY) 
+	  private Set<JobPosting>jobPostings;
+	 
 }
