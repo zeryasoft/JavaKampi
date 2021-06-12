@@ -2,7 +2,10 @@ package zeryasoft.hrms.api.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,11 +18,12 @@ import zeryasoft.hrms.entities.concretes.Employer;
 
 @RestController
 @RequestMapping("/api/employers")
+@CrossOrigin
 public class EmployerController {
 	
-	@Autowired
 	EmployerService employerService;
 
+	@Autowired
 	public EmployerController(EmployerService employerService) {
 		super();
 		this.employerService=employerService;
@@ -31,7 +35,7 @@ public class EmployerController {
 	}
 	
 	@PostMapping("/add")
-	public DataResult<Employer> add(@RequestBody Employer employer) {
+	public DataResult<Employer> add(@Valid @RequestBody Employer employer) {
 		return this.employerService.add(employer);
 	}
 }

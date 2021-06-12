@@ -3,6 +3,7 @@ package zeryasoft.hrms.api.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,10 +15,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import zeryasoft.hrms.business.abstracts.ResumeService;
 import zeryasoft.hrms.core.utilities.results.Result;
-import zeryasoft.hrms.entities.concretes.Resume;
+import zeryasoft.hrms.entities.dtos.ResumeDto;
 
 @RestController
 @RequestMapping("/api/jobpostingforms")
+@CrossOrigin
 public class ResumeController {
 	
 	private ResumeService resumeService;
@@ -28,14 +30,19 @@ public class ResumeController {
 		this.resumeService = resumeService;
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping("/getAll")
 	public Result getAll(){
 		return this.resumeService.getAll();
 	}
+	
+	@GetMapping("/getAllResume")
+	public Result getAllResume(){
+		return this.resumeService.getAllResume();
+	}
 		
 	@PostMapping(value="/add")
-	public Result add(@Valid @RequestBody Resume resume) {
-		return this.resumeService.add(resume);				
+	public Result add(@Valid @RequestBody ResumeDto resumeDto) {
+		return this.resumeService.add(resumeDto);				
 	  }
 	
 	@PutMapping("/uploadImage")

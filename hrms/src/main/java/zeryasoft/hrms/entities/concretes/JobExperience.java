@@ -4,7 +4,6 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,7 +40,7 @@ public class JobExperience {
 	@Column(name="company_name")
 	private String companyName;
 	
-	@ManyToOne(targetEntity = JobTitle.class ,fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = JobTitle.class)
 	@JoinColumn(name = "job_title_id", referencedColumnName =  "id" ,nullable = false)
 	private JobTitle jobTitle;
 	

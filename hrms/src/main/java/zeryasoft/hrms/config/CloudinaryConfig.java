@@ -22,7 +22,7 @@ public class CloudinaryConfig {
 	@Bean
     public Cloudinary cloudinaryUser(){
         return new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", "dc6ur0zsn",
+                "cloud_name", "zeryasoft",
                 "api_key", apiKey,
                 "api_secret", apiSecretKey));
     }
