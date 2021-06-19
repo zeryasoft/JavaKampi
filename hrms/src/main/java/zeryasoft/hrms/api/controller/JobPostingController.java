@@ -78,13 +78,4 @@ public class JobPostingController {
 	public DataResult<List<JobPosting>> updateJobPostingToPassive(int jobPostingFormId) {
 		return this.jobPostingService.updateJobPostingIsActivatedForEmployerId(jobPostingFormId);
 	}
-	
-	
-	/*
-	 * @GetMapping("/getByCompanyName") DataResult<List<JobPostingDto>>
-	 * findByIsActiveAndEmployer_CompanyName(String companyName){ return
-	 * this.jobPostingService.getByCompanyNameAndIsActivatedTrue(companyName);
-	 * 
-	 * }
-	 */
 }
